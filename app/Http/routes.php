@@ -19,3 +19,17 @@ Route::get('/', function () {
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Dashboard
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => [
+        'auth',
+        'admin'
+    ]
+    ], function(){
+    Route::get('dashboard', ['as' => 'dashboard', function(){
+        return view('dashboard');
+    }]);
+});
+

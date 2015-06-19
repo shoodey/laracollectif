@@ -36,7 +36,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span> </a>
                             <ul class="dropdown-menu" role="menu">
                                 @if(Auth::user()->role === 'admin')
-                                    <li><a href="#">Administration</a></li>
+                                    <li><a href="{{ route('dashboard') }}">Administration</a></li>
                                 @endif
                                 <li><a href="{{ url('auth/logout') }}">Se déconnecter</a></li>
                             </ul>
