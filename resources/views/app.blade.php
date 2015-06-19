@@ -26,14 +26,21 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Accueil</a></li>
+                    <li><a href="{{ url('/') }}">Accueil</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if(Auth::guest())
                         <li><a href="{{ url('auth/login') }}">Se connecter</a></li>
                     @else
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">Se déconnecter</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span> </a>
+                            <ul class="dropdown-menu" role="menu">
+                                @if(Auth::user()->role === 'admin')
+                                    <li><a href="#">Administration</a></li>
+                                @endif
+                                <li><a href="{{ url('auth/logout') }}">Se déconnecter</a></li>
+                            </ul>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -41,6 +48,7 @@
     </nav>
 
     <div class="container">
+        @include('flash')
         @yield('content')
     </div>
 

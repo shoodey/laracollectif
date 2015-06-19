@@ -16,7 +16,8 @@
                     {!! BootForm::open()->post()->action(url('auth/login'))!!}
                     {!! BootForm::email('Adresse Email', 'email') !!}
                     {!! BootForm::password('Mot de passe', 'password') !!}
-                    {!! BootForm::submit('Se connecter')->addClass('btn-primary pull-right') !!}
+                    {!! BootForm::checkbox('Se souvenir de moi', 'remember') !!}
+                    {!! BootForm::submit('Se connecter')->addClass('btn-primary center-block') !!}
                     {!! BootForm::close() !!}
                 </div>
             </div>
