@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{!! csrf_token() !!}"/>
     <link rel="icon" href="{{ url('/favicon.ico') }}" />
 
     <title>LaraDash @yield('title')</title>
@@ -31,7 +32,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ url('/') }}" target="_blank">Accueil</a></li>
+                        <li><a href="{{ url('/') }}">Accueil</a></li>
                         <li><a href="{{ url('/auth/logout') }}">Se déconnecter</a></li>
                     </ul>
                 </li>
@@ -55,6 +56,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="{{ url('/js/bootstrap.min.js') }}"></script>
+<script src="{{ url('/js/laravel.js') }}"></script>
 @yield('script')
 
 </body>

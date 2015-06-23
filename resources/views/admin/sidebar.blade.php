@@ -12,6 +12,6 @@
     </ul>
 
     <ul class="nav nav-sidebar">
-        <li><a href="{{ route('admin.categories.index') }}"><i class="glyphicon glyphicon-th-list"></i> Catégories</a></li>
+        <li><a href="{{ route('admin.categories.index') }}"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;Catégories</a></li>
     </ul>
 </div>

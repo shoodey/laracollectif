@@ -27,6 +27,9 @@ class PolesRequest extends Request
             "name" => "required|min:6|unique:poles",
             "email" => "required|email|exists:users,email"
         ];
+        if($this->method() == 'PUT'){
+            $rules["name"] = "required|min:6";
+        }
 
         return $rules;
     }

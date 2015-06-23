@@ -31,13 +31,13 @@
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('admin.poles.index') }}">Pôles</a></li>
-        <li class="active">Ajouter</li>
+        <li class="active">Editer</li>
     </ol>
 
-    <h1 class="page-header">Ajouter un pôle</h1>
-    {!! BootForm::open()->post()->action(route('admin.poles.store')) !!}
-        {!! BootForm::text('Nom', 'name') !!}
-        {!! BootForm::text('Administrateur', 'email')->id('autocomplete') !!}
-        {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}
+    <h1 class="page-header">Editer un pôle</h1>
+    {!! BootForm::open()->put()->action(route('admin.poles.update', $pole)) !!}
+    {!! BootForm::text('Nom', 'name')->value($pole->name) !!}
+    {!! BootForm::text('Administrateur', 'email')->id('autocomplete')->value($pole->user->email) !!}
+    {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}
     {!! BootForm::close() !!}
 @endsection
