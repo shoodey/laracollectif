@@ -144,7 +144,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        AdamWathan\BootForms\BootFormsServiceProvider::class
+        AdamWathan\BootForms\BootFormsServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class
     ],
 
     /*

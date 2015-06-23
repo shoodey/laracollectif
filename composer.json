@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "adamwathan/bootforms": "dev-master"
+        "adamwathan/bootforms": "dev-master",
+        "barryvdh/laravel-debugbar": "^2.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

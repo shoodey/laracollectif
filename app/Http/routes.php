@@ -27,7 +27,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/', [
         'as' => 'dashboard',
         'middleware' => ['auth', 'admin'],
-        function(){ return view('dashboard'); }
+        function(){ return view('admin.dashboard'); }
     ]);
 
     // Users

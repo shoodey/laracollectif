@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PolesRequest;
+use App\Pole;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +19,9 @@ class PolesController extends Controller
      */
     public function index()
     {
-        //
+        $poles = Pole::get();
+        $poles->load('user');
+        return view('poles.admin.index', compact('poles'));
     }
 
     /**
@@ -26,17 +31,22 @@ class PolesController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::get(['id', 'email'])->toJSON();
+        return view('poles.admin.create', compact('users'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param PolesRequest $request
      * @return Response
      */
-    public function store()
+    public function store(PolesRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['user_id'] = User::where('email', $data['email'])->first()->id;
+        Pole::create($data);
+        return redirect(route('admin.poles.index'))->with('success' ,'Le pôle a bien été ajouté.');
     }
 
     /**
