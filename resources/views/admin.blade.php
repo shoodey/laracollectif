@@ -7,11 +7,9 @@
 
     <title>LaraDash @yield('title')</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="{{ url('/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="{{ url('/css/dashboard.css') }}" rel="stylesheet">
+    @yield('style')
 </head>
 
 <body>
@@ -56,5 +54,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="{{ url('/js/bootstrap.min.js') }}"></script>
+@yield('script')
+
 </body>
 </html>

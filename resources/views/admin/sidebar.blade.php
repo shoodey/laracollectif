@@ -5,6 +5,9 @@
 
     <ul class="nav nav-sidebar">
         <li><a href="{{ route('admin.users.index') }}"><i class="glyphicon glyphicon-user"></i> Utilisateurs</a></li>
+    </ul>
+
+    <ul class="nav nav-sidebar">
         <li><a href="{{ route('admin.poles.index') }}"><i class="glyphicon glyphicon-bookmark"></i> Pôles</a></li>
     </ul>
 

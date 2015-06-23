@@ -2,6 +2,24 @@
 
 @section('title', '- Users')
 
+@section('style')
+    <link href="{{ url("/css/datatables.css") }}" rel="stylesheet">
+@endsection
+
+@section('script')
+    <script src="{{ url('/js/datatables.min.js') }}"></script>
+    <script src="{{ url('/js/datatables.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').dataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/French.json"
+                }
+            } );
+        } );
+    </script>
+@endsection
+
 @section('content')
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -9,7 +27,7 @@
     </ol>
 
     <h1 class="page-header">Utilisateurs</h1>
-    <table class="table table-striped">
+    <table id="dataTable" class="table table-striped table-bordered">
         <thead>
         <tr>
             <th>ID</th>
