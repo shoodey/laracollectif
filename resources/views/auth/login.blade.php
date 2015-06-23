@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', '- Login')
+
 @section('content')
 
     <div class="row">
@@ -14,10 +16,10 @@
                 <div class="panel-heading"></div>
                 <div class="panel-body">
                     {!! BootForm::open()->post()->action(url('auth/login'))!!}
-                    {!! BootForm::email('Adresse Email', 'email') !!}
-                    {!! BootForm::password('Mot de passe', 'password') !!}
-                    {!! BootForm::checkbox('Se souvenir de moi', 'remember') !!}
-                    {!! BootForm::submit('Se connecter')->addClass('btn-primary center-block') !!}
+                        {!! BootForm::email('Adresse Email', 'email') !!}
+                        {!! BootForm::password('Mot de passe', 'password') !!}
+                        {!! BootForm::checkbox('Se souvenir de moi', 'remember') !!}
+                        {!! BootForm::submit('Se connecter')->addClass('btn-primary center-block') !!}
                     {!! BootForm::close() !!}
                 </div>
             </div>

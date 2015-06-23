@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title')
+
 @section('content')
     <div class="jumbotron">
         <h1>LaraCollectif</h1>

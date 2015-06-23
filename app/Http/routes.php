@@ -15,21 +15,39 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Authentificatin routes
+// Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-// Dashboard
-Route::group([
-    'prefix' => 'admin',
-    'middleware' => [
-        'auth',
-        'admin'
-    ]
-    ], function(){
-    Route::get('dashboard', ['as' => 'dashboard', function(){
-        return view('dashboard');
-    }]);
+// Admin Panel
+Route::group(['prefix' => 'admin'], function(){
+
+    // Dashboard
+    Route::get('/', [
+        'as' => 'dashboard',
+        'middleware' => ['auth', 'admin'],
+        function(){ return view('dashboard'); }
+    ]);
+
+    // Users
+    Route::get('users', [
+        'as' => 'admin.users.index',
+        'uses' => 'UsersController@index'
+    ]);
+    Route::get('users/{id}/edit', [
+        'as' => 'admin.users.edit',
+        'uses' => 'UsersController@edit'
+    ])->where('id', '[0-9]+');
+    Route::put('users/{id}', [
+        'as' => 'admin.users.update',
+        'uses' => 'UsersController@update'
+    ])->where('id', '[0-9]+');
+
+    // Pôles
+    Route::resource('poles', 'PolesController');
+
+    // Catégories
+    Route::resource('categories', 'CategoriesController');
 });
 

@@ -1,5 +1,11 @@
 @extends('admin')
 
+@section('title')
+
 @section('content')
-    <h1>Dashboard</h1>
+    <ol class="breadcrumb">
+        <li class="active">Dashboard</li>
+    </ol>
+
+    <h1 class="page-header">Dashboard</h1>
 @endsection
