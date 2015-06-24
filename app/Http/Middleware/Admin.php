@@ -32,7 +32,8 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {/*
+    {
+    /*
         if($this->auth->user()->role != 'admin'){
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
@@ -40,7 +41,19 @@ class Admin
                 return redirect('/')->with('error', "Vous n'avez pas le droit d'accèder à cette page !");
             }
         }
-*/
+    */
+        $actionName = explode('\\', $request->route()->getActionName());
+        $action = end($actionName);
+
+        $fragments = explode('@', $action);
+        if(isset($fragments['1'])){
+            $controller = $fragments['0'];
+            $method = $fragments['1'];
+        }else{
+            $controller = null;
+            $method = $fragments['0'];
+        }
+        //dd($controller, $method);
         return $next($request);
     }
 }

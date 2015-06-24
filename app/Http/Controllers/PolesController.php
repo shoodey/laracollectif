@@ -79,7 +79,7 @@ class PolesController extends Controller
     public function edit($id)
     {
         $pole = Pole::findOrFail($id);
-        $users = User::get(['email'])->toJSON();
+        $users = User::get(['email']);
         return view('poles.admin.edit', compact('pole', 'users'));
     }
 
