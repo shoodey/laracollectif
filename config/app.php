@@ -145,7 +145,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         AdamWathan\BootForms\BootFormsServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class
     ],
 
     /*
@@ -159,7 +160,7 @@ return [
     |
     */
 
-    'aliases' => [
+    'aliases' => array(
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
@@ -194,8 +195,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'BootForm' => AdamWathan\BootForms\Facades\BootForm::class
+        'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class
 
-    ],
+    ),
 
 ];

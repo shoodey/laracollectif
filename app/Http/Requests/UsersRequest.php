@@ -24,7 +24,7 @@ class UsersRequest extends Request
     public function rules()
     {
         $rules = [
-            "role" => "required|in:admin,user"
+            "role" => "required|exists:roles,id"
         ];
 
         return $rules;

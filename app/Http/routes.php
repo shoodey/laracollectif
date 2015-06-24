@@ -44,10 +44,15 @@ Route::group(['prefix' => 'admin'], function(){
         'uses' => 'UsersController@update'
     ])->where('id', '[0-9]+');
 
+    //Roles
+    Route::resource('roles', 'RolesController');
+
+    //Permissions
+    Route::resource('permissions', 'PermissionsController');
+
     // Pôles
     Route::resource('poles', 'PolesController');
 
-    // Catégories
-    Route::resource('categories', 'CategoriesController');
+
 });
 

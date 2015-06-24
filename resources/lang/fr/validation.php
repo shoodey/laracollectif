@@ -105,6 +105,7 @@ return [
 
     'attributes' => [
         "name" => "Nom",
+        "display_name" => "Nom affiché",
         "username" => "Pseudo",
         "email" => "E-mail",
         "first_name" => "Prénom",

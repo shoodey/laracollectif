@@ -1,6 +1,6 @@
 @extends('admin')
 
-@section('title', '- Users')
+@section('title', '- Poles')
 
 @section('style')
     <style>

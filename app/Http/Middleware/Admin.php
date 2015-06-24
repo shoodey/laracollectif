@@ -32,7 +32,7 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {/*
         if($this->auth->user()->role != 'admin'){
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
@@ -40,7 +40,7 @@ class Admin
                 return redirect('/')->with('error', "Vous n'avez pas le droit d'accèder à cette page !");
             }
         }
-
+*/
         return $next($request);
     }
 }

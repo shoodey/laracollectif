@@ -13,7 +13,7 @@
     {!! BootForm::open()->put()->action(route('admin.users.update', $user)) !!}
         {!! BootForm::text('Nom', 'name')->value($user->name)->disable() !!}
         {!! BootForm::email('Adresse Email', 'email')->value($user->email)->disable() !!}
-        {!! BootForm::select('Rôle', 'role')->options($roles)->select($user->role) !!}
+        {!! BootForm::select('Rôle', 'role')->options($roles)->select($user->roles->first()['id']) !!}
         {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}
     {!! BootForm::close() !!}
 @endsection

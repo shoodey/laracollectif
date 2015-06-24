@@ -1,6 +1,6 @@
 @extends('admin')
 
-@section('title', '- Users')
+@section('title', '- Poles')
 
 @section('style')
     <link href="{{ url("/css/datatables.css") }}" rel="stylesheet">
@@ -33,6 +33,7 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Administrateur</th>
+                <th>Nbr. d'appartenants</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -42,6 +43,7 @@
                     <td>{{ $pole->id }}</td>
                     <td>{{ $pole->name }}</td>
                     <td>{!! ($pole->user->email == Auth::user()->email) ? "<strong><span class='glyphicon glyphicon-user'></span> {$pole->user->email}</strong>" : $pole->user->email !!}</td>
+                    <td>0</td>
                     <td>
                         <a class="btn btn-primary" href="{{ route('admin.poles.edit', $pole) }}">Editer</a>
                         <a class="btn btn-danger" href="{{ route('admin.poles.destroy', $pole) }}" data-method="delete" data-confirm="Êtes vous sûr de vouloir supprimer cet enregistrement?">Supprimer</a>

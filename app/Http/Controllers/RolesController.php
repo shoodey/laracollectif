@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UsersRequest;
+use App\Http\Requests\RolesRequest;
 use App\Role;
-use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class UsersController extends Controller
+class RolesController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Instantiate a new RostsController instance.
      *
      */
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin', ['only' => ['index', 'edit', 'update']]);
+        $this->middleware('admin');
     }
 
     /**
@@ -28,9 +28,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        $users->load('roles');
-        return view('users.admin.index', compact('users'));
+        $roles = Role::get();
+        return view('roles.admin.index', compact('roles'));
     }
 
     /**
@@ -40,17 +39,19 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.admin.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param RolesRequest $request
      * @return Response
      */
-    public function store()
+    public function store(RolesRequest $request)
     {
-        //
+        Role::create($request->only('name', 'display_name', 'description'));
+        return redirect(route('admin.roles.index'))->with('success' ,'Le rôle a bien été ajouté.');
     }
 
     /**
@@ -72,24 +73,22 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        $roles = Role::lists('display_name', 'id');
-        return view('users.admin.edit', compact('user', 'roles'));
+        $role = Role::findOrFail($id);
+        return view('roles.admin.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  int $id
-     * @param UsersRequest|Request $request
+     * @param PolesRequest $request
      * @return Response
      */
-    public function update($id, UsersRequest $request)
+    public function update($id, RolesRequest $request)
     {
-        $user = User::findOrFail($id);
-        $role = Role::findOrFail($request->input('role'));
-        $user->roles()->sync([$role->id]);
-        return redirect(route('admin.users.index'))->with('success', 'L\'utilisateur a bien été mis à jour.');
+        $role = Role::findOrFail($id);
+        $role->update($request->only('name', 'display_name', 'description'));
+        return redirect(route('admin.roles.index'))->with('success' ,'Le rôle a bien été mis à jour.');
     }
 
     /**
@@ -100,6 +99,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return redirect(route('admin.roles.index'))->with('success', 'Le rôle a bien été supprimé.');
     }
 }
