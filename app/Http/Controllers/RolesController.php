@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RolesRequest;
+use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
 
@@ -74,19 +75,23 @@ class RolesController extends Controller
     public function edit($id)
     {
         $role = Role::findOrFail($id);
-        return view('roles.admin.edit', compact('role'));
+        $role->load('perms');
+        $permissions = Permission::get();
+        return view('roles.admin.edit', compact('role', 'permissions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  int $id
-     * @param PolesRequest $request
+     * @param RolesRequest $request
      * @return Response
      */
     public function update($id, RolesRequest $request)
     {
         $role = Role::findOrFail($id);
+        //dd(array_keys($request->all()['permissions']));
+        $role->perms()->sync(array_keys($request->all()['permissions']));
         $role->update($request->only('name', 'display_name', 'description'));
         return redirect(route('admin.roles.index'))->with('success' ,'Le rôle a bien été mis à jour.');
     }

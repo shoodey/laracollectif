@@ -44,15 +44,7 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>
-                    @if($user->roles->first()['name'] === "admin")
-                        <h5><span class="label label-success">{{ $user->roles->first()['display_name'] }}</span></h5>
-                    @elseif($user->roles->first()['name'] === "super_admin")
-                        <h5><span class="label label-danger">{{ $user->roles->first()['display_name'] }}</span></h5>
-                    @else
-                        <h5><span class="label label-default">{{ $user->roles->first()['display_name'] }}</span></h5>
-                    @endif
-                </td>
+                <td>{{ $user->roles->first()['display_name']  }}</td>
                 <td></td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('admin.users.edit', $user) }}">Editer</a>

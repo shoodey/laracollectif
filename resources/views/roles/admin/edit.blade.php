@@ -14,6 +14,19 @@
     {!! BootForm::text('Rôle', 'name')->value($role->name) !!}
     {!! BootForm::text('Nom', 'display_name')->value($role->display_name) !!}
     {!! BootForm::textarea('Description', 'description')->value($role->description) !!}
+
+
+    <h1>Permissions</h1>
+        @foreach($permissions as $permission)
+               @if(in_array($permission->id, $role->perms->lists('id')->toArray()))
+                   {!! BootForm::checkbox($permission->display_name, "permissions[$permission->id]")->check() !!}
+               @else
+                   {!! BootForm::checkbox($permission->display_name, "permissions[$permission->id]") !!}
+               @endif
+        @endforeach
+
+
+
     {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}
     {!! BootForm::close() !!}
 @endsection
