@@ -33,6 +33,7 @@
             <th>ID</th>
             <th>Permission</th>
             <th>Nom</th>
+            <th>Model</th>
             <th class="hidden-sm hidden-xs">Description</th>
             <th>Actions</th>
         </tr>
@@ -43,6 +44,7 @@
                 <td>{{ $permission->id }}</td>
                 <td>{{ $permission->name }}</td>
                 <td>{{ $permission->display_name }}</td>
+                <td>{{ ucfirst($permission->model) }}</td>
                 <td class="hidden-sm hidden-xs">{{ str_limit($permission->description, 50) }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('admin.permissions.edit', $permission) }}">Editer</a>

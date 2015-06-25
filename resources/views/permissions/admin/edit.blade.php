@@ -1,6 +1,6 @@
 @extends('admin')
 
-@section('title', '- Roles')
+@section('title', '- Permissions')
 
 @section('content')
     <ol class="breadcrumb">
@@ -13,6 +13,7 @@
     {!! BootForm::open()->put()->action(route('admin.permissions.update', $permission)) !!}
         {!! BootForm::text('Permission', 'name')->value($permission->name) !!}
         {!! BootForm::text('Nom', 'display_name')->value($permission->display_name) !!}
+        {!! BootForm::text('Model', 'model')->value($permission->model) !!}
         {!! BootForm::textarea('Description', 'description')->value($permission->description) !!}
         {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}
     {!! BootForm::close() !!}

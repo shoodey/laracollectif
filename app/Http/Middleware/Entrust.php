@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Admin
+class Entrust
 {
     /**
      * The Guard implementation.
@@ -31,29 +31,25 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next )
     {
-    /*
-        if($this->auth->user()->role != 'admin'){
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect('/')->with('error', "Vous n'avez pas le droit d'accèder à cette page !");
-            }
-        }
-    */
+        // Traitement du controller et method appelants
         $actionName = explode('\\', $request->route()->getActionName());
         $action = end($actionName);
 
         $fragments = explode('@', $action);
-        if(isset($fragments['1'])){
-            $controller = $fragments['0'];
-            $method = $fragments['1'];
-        }else{
+        if(!isset($fragments['1'])){
             $controller = null;
             $method = $fragments['0'];
+        }else{
+            $controller = $fragments['0'];
+            $method = $fragments['1'];
+            $controller = strtolower(str_replace('Controller', '', $controller));
+            $requiredPermission = $method . '-' . $controller;
+            if(!$this->auth->user()->ability('super-admin', $requiredPermission)){
+                return redirect('/')->with('error', "Vous n'avez pas le droit d'accèder à cette page !");
+            }
         }
-        //dd($controller, $method);
         return $next($request);
     }
 }

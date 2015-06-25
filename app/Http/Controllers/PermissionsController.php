@@ -18,7 +18,7 @@ class PermissionsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('entrust');
     }
 
     /**
@@ -50,7 +50,7 @@ class PermissionsController extends Controller
      */
     public function store(PermissionsRequest $request)
     {
-        Permission::create($request->only('name', 'display_name', 'description'));
+        Permission::create($request->only('name', 'display_name', 'description', 'model'));
         return redirect(route('admin.permissions.index'))->with('success' ,'La permission a bien été ajoutée.');
     }
 
@@ -87,7 +87,7 @@ class PermissionsController extends Controller
     public function update($id, PermissionsRequest $request)
     {
         $permission = Permission::findOrFail($id);
-        $permission->update($request->only('name', 'display_name', 'description'));
+        $permission->update($request->only('name', 'display_name', 'description', 'model'));
         return redirect(route('admin.permissions.index'))->with('success' ,'La permission a bien été mise à jour.');
     }
 

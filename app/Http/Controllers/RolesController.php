@@ -19,7 +19,7 @@ class RolesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('entrust');
     }
 
     /**
@@ -40,7 +40,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('roles.admin.create');
+        $permissions = Permission::get();
+        return view('roles.admin.create', compact('permissions'));
     }
 
     /**
@@ -51,7 +52,10 @@ class RolesController extends Controller
      */
     public function store(RolesRequest $request)
     {
-        Role::create($request->only('name', 'display_name', 'description'));
+        $role = Role::create($request->only('name', 'display_name', 'description'));
+        if(!empty($request->all()['permissions'])){
+            $role->perms()->sync(array_keys($request->all()['permissions']));
+        }
         return redirect(route('admin.roles.index'))->with('success' ,'Le rôle a bien été ajouté.');
     }
 
@@ -90,8 +94,8 @@ class RolesController extends Controller
     public function update($id, RolesRequest $request)
     {
         $role = Role::findOrFail($id);
-        //dd(array_keys($request->all()['permissions']));
-        $role->perms()->sync(array_keys($request->all()['permissions']));
+        if(!empty($request->all()['permissions']))
+            $role->perms()->sync(array_keys($request->all()['permissions']));
         $role->update($request->only('name', 'display_name', 'description'));
         return redirect(route('admin.roles.index'))->with('success' ,'Le rôle a bien été mis à jour.');
     }

@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin'], function(){
     // Dashboard
     Route::get('/', [
         'as' => 'dashboard',
-        'middleware' => ['auth', 'admin'],
+        'middleware' => 'auth',
         function(){ return view('admin.dashboard'); }
     ]);
 
@@ -52,7 +52,6 @@ Route::group(['prefix' => 'admin'], function(){
 
     // Pôles
     Route::resource('poles', 'PolesController');
-
-
 });
 
+//Entrust::routeNeedsRole('admin', 'admin', Redirect::to('/')->with('success', 'lol'));

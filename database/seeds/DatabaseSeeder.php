@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        //factory(User::class, 50)->create();
+        $this->call('UsersSeeder');
+        $this->call('RolesSeeder');
+        $this->call('PermissionsSeeder');
 
         Model::reguard();
     }

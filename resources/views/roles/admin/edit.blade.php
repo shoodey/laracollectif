@@ -16,15 +16,27 @@
     {!! BootForm::textarea('Description', 'description')->value($role->description) !!}
 
 
-    <h1>Permissions</h1>
-        @foreach($permissions as $permission)
-               @if(in_array($permission->id, $role->perms->lists('id')->toArray()))
-                   {!! BootForm::checkbox($permission->display_name, "permissions[$permission->id]")->check() !!}
-               @else
-                   {!! BootForm::checkbox($permission->display_name, "permissions[$permission->id]") !!}
-               @endif
+    <h1 class="page-header">Permissions</h1>
+    <div class="row">
+        @foreach($permissions->groupBy('model') as $model => $permissions)
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ ucfirst($model) }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        @foreach($permissions as $permission)
+                            @if(in_array($permission->id, $role->perms->lists('id')->toArray()))
+                                {!! BootForm::checkbox($permission->display_name, "permissions[$permission->id]")->check() !!}
+                            @else
+                                {!! BootForm::checkbox($permission->display_name, "permissions[$permission->id]") !!}
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         @endforeach
-
+    </div>
 
 
     {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}

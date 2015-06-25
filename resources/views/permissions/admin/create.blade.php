@@ -1,6 +1,6 @@
 @extends('admin')
 
-@section('title', '- Roles')
+@section('title', '- Permissions')
 
 @section('content')
     <ol class="breadcrumb">
@@ -11,8 +11,9 @@
 
     <h1 class="page-header">Ajouter une permission</h1>
     {!! BootForm::open()->post()->action(route('admin.permissions.store')) !!}
-        {!! BootForm::text('Permission', 'name') !!}
+        {!! BootForm::text('Permission', 'name')->placeholder('method-controller[plural]') !!}
         {!! BootForm::text('Nom', 'display_name') !!}
+        {!! BootForm::text('Model', 'model')->placeholder('Singular & LowerCase') !!}
         {!! BootForm::textarea('Description', 'description') !!}
         {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}
     {!! BootForm::close() !!}

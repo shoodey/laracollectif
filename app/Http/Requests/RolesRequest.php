@@ -26,7 +26,7 @@ class RolesRequest extends Request
         $rules = [
             "name" => "required|min:4|unique:roles|alpha_dash",
             "display_name" => "required|min:4|unique:roles|regex:/^[\pL\s]+$/u",
-            "description" => "required|max:255"
+            "description" => "max:255"
         ];
         if($this->method() == 'PUT'){
             $rules["name"] = "required|min:4|alpha_dash";
