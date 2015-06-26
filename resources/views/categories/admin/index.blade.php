@@ -44,7 +44,7 @@
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->display_name }}</td>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->parent['name'] }}</td>
+                <td>{{ $category->parent['display_name'] }}</td>
                 <td class="hidden-sm hidden-xs">{{ str_limit($category->description, 50) }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('admin.categories.edit', $category) }}">Editer</a>

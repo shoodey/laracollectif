@@ -66,7 +66,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $categories = Category::lists('display_name', 'id')->toArray();
-        $categories[0] = "Aucun parent";
+        array_unshift($categories, 'Aucun parent');
         $category = Category::findOrFail($id);
         $category->load('parent');
         return view('categories.admin.edit', compact('category', 'categories'));

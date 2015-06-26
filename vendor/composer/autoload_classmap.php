@@ -9,6 +9,7 @@ return array(
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2015_06_25_140039_create_categories_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePolesTable' => $baseDir . '/database/migrations/2015_06_23_053909_create_poles_table.php',
+    'CreateUploadsTable' => $baseDir . '/database/migrations/2015_06_26_115656_create_uploads_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'EntrustSetupTables' => $baseDir . '/database/migrations/2015_06_24_001552_entrust_setup_tables.php',

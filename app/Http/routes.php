@@ -59,6 +59,9 @@ Route::group(['prefix' => 'admin'], function(){
 
     // Catégories
     Route::resource('categories', 'CategoriesController');
+
+    // Uploads
+    Route::resource('uploads', 'UploadsController');
 });
 
 //Entrust::routeNeedsRole('admin', 'admin', Redirect::to('/')->with('success', 'lol'));
