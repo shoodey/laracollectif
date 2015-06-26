@@ -14,7 +14,7 @@
         {!! BootForm::text('Nom de la catégorie', 'display_name')->value($category->display_name) !!}
         {!! BootForm::text('Nom', 'name')->value($category->name) !!}
         {!! BootForm::textarea('Description', 'description')->value($category->description) !!}
-        {!! BootForm::select('Catégorie parente', 'parent_id')->options($categories)->select$category->parent_id) !!}
+        {!! BootForm::select('Catégorie parente', 'parent_id')->options($categories)->select($category->parent['id']) !!}
         {!! BootForm::submit('Enregistrer')->addClass('btn-primary pull-right') !!}
     {!! BootForm::close() !!}
 @endsection

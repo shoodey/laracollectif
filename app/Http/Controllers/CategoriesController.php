@@ -29,7 +29,7 @@ class CategoriesController extends Controller
     public function create()
     {
         $categories = Category::lists('display_name', 'id')->toArray();
-        array_unshift($categories, 'Aucun parent');
+        $categories[0] = "Aucun parent";
         return view('categories.admin.create', compact('categories'));
     }
 
@@ -66,8 +66,9 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $categories = Category::lists('display_name', 'id')->toArray();
-        array_unshift($categories, 'Aucun parent');
+        $categories[0] = "Aucun parent";
         $category = Category::findOrFail($id);
+        $category->load('parent');
         return view('categories.admin.edit', compact('category', 'categories'));
     }
 
