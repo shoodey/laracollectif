@@ -4,6 +4,8 @@ namespace Illuminate\Database\Query;
 
 use Closure;
 use BadMethodCallException;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
@@ -1007,7 +1009,7 @@ class Builder
         // clause on the query. Then we'll increment the parameter index values.
         $bool = strtolower($connector);
 
-        $this->where(snake_case($segment), '=', $parameters[$index], $bool);
+        $this->where(Str::snake($segment), '=', $parameters[$index], $bool);
     }
 
     /**
@@ -1512,7 +1514,7 @@ class Builder
 
         $results = new Collection($this->get($columns));
 
-        return $results->pluck($columns[0], array_get($columns, 1))->all();
+        return $results->pluck($columns[0], Arr::get($columns, 1))->all();
     }
 
     /**
@@ -1860,7 +1862,7 @@ class Builder
      */
     public function getBindings()
     {
-        return array_flatten($this->bindings);
+        return Arr::flatten($this->bindings);
     }
 
     /**
@@ -1983,7 +1985,7 @@ class Builder
      */
     public function __call($method, $parameters)
     {
-        if (starts_with($method, 'where')) {
+        if (Str::startsWith($method, 'where')) {
             return $this->dynamicWhere($method, $parameters);
         }
 

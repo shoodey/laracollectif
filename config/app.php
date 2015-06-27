@@ -146,7 +146,8 @@ return [
 
         AdamWathan\BootForms\BootFormsServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Baum\Providers\BaumServiceProvider::class
     ],
 
     /*

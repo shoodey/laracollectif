@@ -34,7 +34,7 @@ trait AuthenticatesUsers
         $credentials = $this->getCredentials($request);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            return redirect('/')->with('success', 'Vous êtes maintenant connecté !');
+            return redirect()->intended($this->redirectPath());
         }
 
         return redirect($this->loginPath())
@@ -62,7 +62,7 @@ trait AuthenticatesUsers
      */
     protected function getFailedLoginMessage()
     {
-        return 'Le couple adresse email et mot de passe ne corresponf p';
+        return 'These credentials do not match our records.';
     }
 
     /**
@@ -74,7 +74,7 @@ trait AuthenticatesUsers
     {
         Auth::logout();
 
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/')->with('success', 'Vous êtes maintenant déconnecté !');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 
     /**
