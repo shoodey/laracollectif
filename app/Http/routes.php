@@ -56,6 +56,9 @@ Route::group(['prefix' => 'admin'], function(){
 
     // Pôles
     Route::resource('poles', 'PolesController');
+
+    // Catégories
+    Route::resource('categories', 'CategoriesController');
 });
 
 //Entrust::routeNeedsRole('admin', 'admin', Redirect::to('/')->with('success', 'lol'));

@@ -26,8 +26,7 @@ class PermissionsRequest extends Request
         $rules = [
             "name" => "required|min:4|unique:permissions|alpha_dash",
             "display_name" => "required|min:4|unique:permissions|regex:/^[\pL\s]+$/u",
-            "model" => "required|min:4|alpha",
-            "description" => "max:255"
+            "model" => "required|min:4|alpha"
         ];
         if($this->method() == 'PUT'){
             $rules["name"] = "required|min:4|alpha_dash";
