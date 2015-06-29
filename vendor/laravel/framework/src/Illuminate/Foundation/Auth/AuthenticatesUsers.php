@@ -62,7 +62,7 @@ trait AuthenticatesUsers
      */
     protected function getFailedLoginMessage()
     {
-        return 'These credentials do not match our records.';
+        return 'Le couple email et mot de passe ne correspond pas.';
     }
 
     /**
