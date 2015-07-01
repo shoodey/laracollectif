@@ -84,6 +84,8 @@ Tâches Complétées
 
 > *   Listage clair et précis de tous les dossiers et sous-dossiers ainsi que leurs chemins respectifs et contenus.
 
+----------
+
 ## Tâches à réaliser
 
 Liste des tâches à réaliser:  (Liste non exhaustive)>
@@ -113,3 +115,5 @@ Liste des tâches à réaliser:  (Liste non exhaustive)>
 > **EDTs:**
 > 
 > *   Système dynamique de gestion des emplois du temps.
+
+----------
