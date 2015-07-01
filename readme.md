@@ -1,4 +1,4 @@
-LaraCollectif
+[LaraCollectif](http://shoodey.github.io/laracollectif)
 ===================
 
 Système d'archivage pour l'[Université Internationale de Rabat](http://www.uir.ac.ma), sous Laravel 5.1
