@@ -1293,7 +1293,7 @@ abstract class Node extends Model
      * @param string $seperator
      * @return Array
      */
-    public static function getNestedList($column, $key = null, $seperator = "")
+    public static function getNestedList($column, $key = null, $seperator = " ")
     {
         $instance = new static;
 
